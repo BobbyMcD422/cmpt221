@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 # load environment variables from .env
 load_dotenv()
 
-# declarative base is sqlalchemy's foundation class that enables you to create 
+# declarative baspe is sqlalchemy's foundation class that enables you to create 
 # database models using python classes instead of manually defining tables
 Base = declarative_base()
 
