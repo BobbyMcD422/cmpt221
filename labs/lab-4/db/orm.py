@@ -45,7 +45,7 @@ def update_professor():
     session = get_session()
     try:
         # TODO: get professor to be updated (would ideally be a parameter) *DONE*
-        professor = session.query(Professor).filter(Professor.ProfessorID == 1).scalar_one_or_none()
+        professor = session.query(Professor).filter(Professor.ProfessorID == 13).first()
 
         # TODO: use the sqlalchemy orm to update 1 record *DONE*
         if professor:
@@ -69,7 +69,7 @@ def delete_professor():
     session = get_session()
     try:
         # TODO: get professor to be deleted (would ideally be a parameter) *DONE*
-        professor = session.query(Professor).filter(Professor.ProfessorID == 2).scalar_one_or_none()
+        professor = session.query(Professor).filter(Professor.ProfessorID == 14).first()
 
         # TODO: use the sqlalchemy orm to delete 1 record
         if professor:

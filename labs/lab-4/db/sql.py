@@ -51,10 +51,10 @@ def update_course():
         # TODO: write a SQL query to update 1 record *DONE*
         query = """
         UPDATE "Courses"
-        SET "CourseName" = "Discrete Math"
-            "Semester" = 'Spring'
+        SET "CourseName" = 'Discrete Math',
+            "Semester" = 'Spring',
             "Year" = 2012
-        WHERE "CourseName" = "Intro To Music";
+        WHERE "CourseName" = 'Intro To Music';
         """
         result = session.execute(text(query))
         # "save" the changes
