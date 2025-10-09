@@ -44,7 +44,7 @@ def create_app():
     @app.route('/memory1.html')
     def memory1():
         """Memory 1"""
-        return render_template('memor1.html')
+        return render_template('memory1.html')
     
     @app.route('/memory2.html')
     def memory2():

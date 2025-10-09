@@ -1,9 +1,9 @@
 let list = [
     "/",
-    "page1.html",
-    "page2.html",
-    "page3.html",
-    "page4.html"
+    "memory1.html",
+    "memory2.html",
+    "memory3.html",
+    "theAbyss.html"
 ];
 
 function getNewPage() {
@@ -79,5 +79,8 @@ function checkPassword() {
     } else {
         document.getElementsByClassName("finalButton")[0].disabled = true;
     }
+}
 
+function fix() {
+    document.body.style.overflow = "visible";
 }
