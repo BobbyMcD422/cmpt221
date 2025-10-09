@@ -41,7 +41,31 @@ def create_app():
         return render_template('index.html')
     
     # add more routes here!
+    @app.route('/memory1.html')
+    def memory1():
+        """Memory 1"""
+        return render_template('memor1.html')
+    
+    @app.route('/memory2.html')
+    def memory2():
+        """Memory 2"""
+        return render_template('memory2.html')
+    
+    @app.route('/memory3.html')
+    def memory3():
+        """Memory 3"""
+        return render_template('memory3.html')
 
+    @app.route('/theAbyss.html')
+    def theAbyss():
+        """The Abyss"""
+        return render_template('theAbyss.html')
+    
+    @app.route('/peace.html')
+    def peace():
+        """At The End You Can Find Peace"""
+        return render_template('peace.html')
+    
     return app
 
 if __name__ == "__main__":
