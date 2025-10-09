@@ -1,14 +1,125 @@
+@font-face {
+      font-family: ccfont;
+      src: url(assets/ccfont.ttf) format('truetype');
+    }
+
+/* The Stuff with comments is from W3Schools */
+.loader {
+  position: relative;
+  z-index: 1;
+  left: 65%;
+  top: 50%;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  padding: 10%;
+  background-color: #3498db;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 body {
-    background-color: lightblue;
+    background-image: repeating-linear-gradient(to right, rgb(121, 93, 6), yellow 5%, purple 10%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #popup-button {
+    position: relative;
+    background: none;
+    border-radius: 100%;
+    opacity: 55%;
+    font-size: 30px;
+    padding: 10%;
+    top: -120px;
+    left: 150px;
+    color: red;
+    border-color: red;
+    transition: 0.5s;
+    animation: spin 0.5s linear infinite;
+  }
+  #wobblyText {
+    animation: spin 2s linear infinite;
+  }
+
+  .sideways {
+    background-image: repeating-linear-gradient(0deg, rgb(121, 93, 6), yellow 5%, purple 10%);
+    padding: 10px;
+    font-family: ccfont;
+  }
+  
+  .broken {
+    position: fixed;
+    top: 2.6%;
+    left: 50.3%;
+    transform: translate(-50%, -50%);
+    animation: scrollText 15s linear infinite;
+  }
+
+  #pinBox {
+    background-image: radial-gradient(yellow, rgba(12, 168, 67, 0.685));
+    width: fit-content;
+    text-align: center;
+    margin: auto;
+    padding: 5%;
+    overflow:scroll;
+  }
+
+  #boxElement {
+    transform: translate(400%, 400%);
+    background-color: #b1a55b;
+  }
+
+  #finalButton {
+    padding: 50%;
   }
   
   h1 {
-    color: blueviolet;
+    color: rgb(120, 105, 23);
     text-align: center;
   }
-  
+
+  .sText {
+    color: aqua;
+    background-color: rgb(69, 69, 69);
+  }
+
   p {
     font-family: verdana;
     font-size: 20px;
     text-align: center;
+  }
+
+  h3 {
+    position: relative;
+    font-size: 20px;
   }
