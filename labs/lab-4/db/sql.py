@@ -26,8 +26,12 @@ def insert_courses():
     """Insert 3 records into the Courses table using SQL."""
     session = get_session()
     try:
-        # TODO: write a SQL query to insert 3 records 
+        # TODO: write a SQL query to insert 3 records *DONE*
         query = """
+        INSERT INTO "Courses" ("CourseName", "Semester", "Year") VALUES 
+        ('Intro To Music', 'Fall', 2021),
+        ('Operating Systems', 'Spring', 2005),
+        ('Media And Culture', 'Winter', 2026);
         """
         session.execute(text(query))
         session.commit()
@@ -43,8 +47,13 @@ def update_course():
     """Update one record in the Courses table using SQL."""
     session = get_session()
     try:
-        # TODO: write a SQL query to update 1 record
+        # TODO: write a SQL query to update 1 record *DONE*
         query = """
+        UPDATE "Courses"
+        SET "CourseName" = 'Discrete Math',
+            "Semester" = 'Spring',
+            "Year" = 2012
+        WHERE "CourseName" = 'Intro To Music';
         """
         result = session.execute(text(query))
         # "save" the changes
@@ -62,8 +71,9 @@ def delete_course():
     """Delete one record in the Courses table using SQL."""
     session = get_session()
     try:
-        # TODO: write a SQL query to delete 1 record
+        # TODO: write a SQL query to delete 1 record *DONE*
         query = """
+        DELETE FROM "Courses" WHERE "Year" = 2005;
         """
         result = session.execute(text(query))
         # "save" the changes
