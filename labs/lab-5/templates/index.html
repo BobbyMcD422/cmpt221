@@ -3,10 +3,89 @@
     <head>
         <title>Lab 5</title>
         <link rel="stylesheet" href="/static/style.css">
+        <script src="/static/script.js"></script>
     </head>
-    <body>
-        <h1>Welcome to Lab 5!</h1>
-        <p>Kind of ugly & useless right? </p>
-        <p>Well, get creative and make it even worse.</p>
+    <body onload="on()">
+        <h1>We come to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ensp;&ensp;5!</h1>
+        <h1 class="broken">l&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Lab</h1>
+        <br>
+        <div id="overlay">
+            <div id="popup">
+                <button id="popup-button" onclick="buttonClick()">X</button>
+                <h1 id="wobblyText">lol</h1>
+            </div>
+        </div>
+        <div class="loader"></div>
+        <div class="sideways">
+            <h1 class="sText">Oops... it appears this document has gone into <span style="color:red"><b><i>disrepair</i></b></span> or <span style="color:red"><b><i>disarray</i></b></span> or something</h1>
+            <img src="../static/assets/tipscreen.png" height="100px"/>
+            <h2>To Escape This Madness You Need To Go Throughout Your Lost Memories Of Being A Computer Science Student...</h2>
+            <h2>The PIN Below Is Made Up Of The Error Codes You Received From Your <b>5</b> Coding Projects</h2>
+            <h3>Now Go On And Find Them!</h3>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="pinBox">
+            <p id="boxElement">Enter The Pin</p>
+            <div>
+                <button onclick="pinUpdate(1,1)">^</button>
+                <button onclick="pinUpdate(2,1)">^</button>
+                <button onclick="pinUpdate(3,1)">^</button>
+                <button onclick="pinUpdate(4,1)">^</button>
+                <button onclick="pinUpdate(5,1)">^</button>
+            </div>
+            <br>
+            <h3><span id="num1">0</span>&nbsp;&nbsp;&nbsp;<span id="num2">0</span>&nbsp;&nbsp;&nbsp;<span id="num3">0</span>&nbsp;&nbsp;&nbsp;<span id="num4">0</span>&nbsp;&nbsp;&nbsp;<span id="num5">0</span></h3>
+            <br>
+            <div>
+                <button onclick="pinUpdate(1,-1)">v</button>
+                <button onclick="pinUpdate(2,-1)">v</button>
+                <button onclick="pinUpdate(3,-1)">v</button>
+                <button onclick="pinUpdate(4,-1)">v</button>
+                <button onclick="pinUpdate(5,-1)">v</button>
+            </div>
+            <a href="peace.html"><button type="button" class="finalButton" id="boxElement" disabled>Click Me!</button></a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h4>Uh oh... it's not that easy, the Button is ALSO broken and will send you to a Random Page You May or May Not need to visit</h4>
+        <a id="newTab" onclick="getNewPage()" href="" target="_parent">Click For A New Opportunity</a>
     </body>
 </html>
