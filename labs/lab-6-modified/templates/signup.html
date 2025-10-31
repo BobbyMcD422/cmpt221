@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lab 6 Sign Up</title>
+        <title>Lab 7 Sign Up</title>
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
@@ -9,7 +9,7 @@
         <div>
         <form method="post">
             <h3>First Name<span style="color: red;">*</span></h3>
-            <input type="text" name="FirstName" value="" required/>
+            <input type="text" name="FirstName" value="" pattern="^[A-Za-z]+$" required/>
             <h3>Last Name<span style="color: red;">*</span></h3>
             <input type="text" name="LastName" value="" required/>
             <h3>Email<span style="color: red;">*</span></h3>

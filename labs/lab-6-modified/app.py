@@ -1,11 +1,18 @@
 """app.py: render and route to webpages"""
 
-import os
-from dotenv import load_dotenv
+import os, bcrypt, logging
+from dotenv import load_dotenv # type: ignore
 from flask import Flask, render_template, request, redirect, url_for
 from db.query import get_all, insert, get_one
 from db.server import init_database
 from db.schema import Users
+
+# Setup for Logger
+logging.basicConfig( 
+    filename="logs/log.txt", level=logging.INFO, filemode="a", format="%(asctime)s [%(levelname)s] %(message)s"
+)
+
+logger = logging.getLogger(__name__)
 
 # load environment variables from .env
 load_dotenv()
@@ -46,22 +53,59 @@ def create_app():
     def signup():
         """Sign up page: enables users to sign up"""
         
+        # Server Side Input Validation
+        error: str = None
+        is_valid: bool = False
+
         if request.method == 'POST':
-            try:
-                user = Users(FirstName=request.form["FirstName"],
-                            LastName=request.form["LastName"],
-                            Email=request.form["Email"],
-                            PhoneNumber=request.form["PhoneNumber"],
-                            Password=request.form["Password"])
+            
+            FirstName=request.form["FirstName"]
+            LastName=request.form["LastName"]
+            PhoneNumber=request.form["PhoneNumber"]
+
+            if FirstName.isalpha() and LastName.isalpha() and PhoneNumber.isnumeric() and len(PhoneNumber) == 10:
+                print(f"Inputs {FirstName}, {LastName}, and {PhoneNumber} are valid.")
+                is_valid = True
+            elif not FirstName.isalpha():
+                print(f"Input: {FirstName} is Invalde")
+                #error = error_msg
+
+            if is_valid:
+
+                user_data: dict = {}
+
+                for key, value in request.form.items():
+                    user_data[key] = value.strip()
                 
-                insert(user)
-            except Exception as e:
-                print("Error inserting user: ", e)
-                return redirect(url_for('signup'))
-            finally:
-                return redirect(url_for('index'))
+                # converting password to array of bytes
+                bytes = user_data['Password'].encode('utf-8')
+
+                # generating the salt
+                salt = bcrypt.gensalt()
+
+                # Hashing the password
+                user_data['Password'] = bcrypt.hashpw(bytes, salt)
+
+                try:
+                    user = Users(FirstName=user_data['FirstName'],
+                            LastName=user_data['LastName'],
+                            Email=user_data['Email'],
+                            PhoneNumber=user_data['PhoneNumber'],
+                            Password=user_data['Password'])
+                    insert(user)
+                except Exception as e:
+                    logging.error(f"An error has occurred: {e}")
+                    return redirect(url_for('error'), errors=str(e))
+                finally:
+                    return redirect(url_for('index'))
 
         return render_template('signup.html')
+    
+    @app.route('/error')
+    def error():
+        """Doc later"""
+        errors = request.args.get('errors', 'Unknown error')
+        return render_template('error', errors=errors)
     
     @app.route('/login', methods=['GET', 'POST'])
     def login():
@@ -78,7 +122,7 @@ def create_app():
                     print("Wrong Password")
                 return redirect(url_for('login'))
             except Exception as e:
-                print("Error Logging In: ", e)
+                logging.error(f"An error has occurred: {e}")
                 print("No Account With Such Email (most likely)")
                 return redirect(url_for('login'))
 
