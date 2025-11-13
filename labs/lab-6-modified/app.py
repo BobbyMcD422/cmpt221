@@ -59,9 +59,10 @@ def create_app():
 
         if request.method == 'POST':
             
-            FirstName=request.form["FirstName"]
-            LastName=request.form["LastName"]
+            FirstName=request.form["FirstName"].upper()
+            LastName=request.form["LastName"].upper()
             PhoneNumber=request.form["PhoneNumber"]
+            Email=request.form["Email"].lower()
 
             if FirstName.isalpha() and LastName.isalpha() and PhoneNumber.isnumeric() and len(PhoneNumber) == 10:
                 print(f"Inputs {FirstName}, {LastName}, and {PhoneNumber} are valid.")
@@ -75,7 +76,14 @@ def create_app():
                 user_data: dict = {}
 
                 for key, value in request.form.items():
-                    user_data[key] = value.strip()
+                    if key == 'FirstName' or key == 'LastName':
+                        user_data[key] = value.strip().upper()
+                    elif key == 'Email':
+                        user_data[key] = value.strip().lower()
+                    elif key == 'PhoneNumber':
+                        user_data[key] = value.strip().replace("-", "")
+                    else:
+                        user_data[key] = value.strip()
                 
                 # converting password to array of bytes
                 bytes = user_data['Password'].encode('utf-8')
@@ -87,17 +95,15 @@ def create_app():
                 user_data['Password'] = bcrypt.hashpw(bytes, salt)
 
                 try:
-                    user = Users(FirstName=user_data['FirstName'],
-                            LastName=user_data['LastName'],
-                            Email=user_data['Email'],
-                            PhoneNumber=user_data['PhoneNumber'],
-                            Password=user_data['Password'])
-                    insert(user)
+                    if not get_one(Users, Email=user_data['Email']):
+                        insert(Users(**user_data))
+                    else:
+                        return redirect(url_for('error', errors="Already An Account With This Email"))
                 except Exception as e:
                     logging.error(f"An error has occurred: {e}")
-                    return redirect(url_for('error'), errors=str(e))
-                finally:
-                    return redirect(url_for('index'))
+                    return redirect(url_for('error', errors=str(e)))
+                
+                return redirect(url_for('index'))
 
         return render_template('signup.html')
     
@@ -105,7 +111,7 @@ def create_app():
     def error():
         """Doc later"""
         errors = request.args.get('errors', 'Unknown error')
-        return render_template('error', errors=errors)
+        return render_template('error.html', errors=errors)
     
     @app.route('/login', methods=['GET', 'POST'])
     def login():
@@ -113,17 +119,20 @@ def create_app():
 
         if request.method == 'POST':
             try:
+                import codecs
                 # Get SQLAlchemy Object And See If The Email + Pass Combo Exists 
-                attempted_user = get_one(Users, Email=request.form["Email"].lower())
+                attempted_user = get_one(Users, Email=request.form["Email"])
+                userPw = request.form["Password"].encode('utf-8')
                 
-                if attempted_user.Password == request.form["Password"]:
+                stored_hash_hex = attempted_user.Password  # e.g. "\x24..."
+                stored_hash_bytes = codecs.decode(stored_hash_hex.replace("\\x", ""), "hex")
+
+                if bcrypt.checkpw(userPw, stored_hash_bytes):
                     return redirect(url_for('success'))
                 else:
-                    print("Wrong Password")
-                return redirect(url_for('login'))
+                    logging.error(f"Wrong Password")
             except Exception as e:
                 logging.error(f"An error has occurred: {e}")
-                print("No Account With Such Email (most likely)")
                 return redirect(url_for('login'))
 
         return render_template('login.html')
