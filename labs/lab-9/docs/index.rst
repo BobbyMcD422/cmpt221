@@ -6,10 +6,7 @@
 CMPT221 documentation
 =====================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+My CMPT221 Labs
 
 .. toctree::
    :maxdepth: 2

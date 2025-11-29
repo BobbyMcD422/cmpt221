@@ -1,0 +1,29 @@
+.. _`Troubleshooting`:
+
+Troubleshooting
+===============
+This section describes some common issues that can arise and possible solutions.
+
+Issue #1
+--------
+<Description>
+.gitignore not ingoring the right file 
+
+<Solution>
+Removing it from the git cache with 'git rm --cached <filename>'
+
+Issue #2
+--------
+<Description>
+Outdated requirements.txt Causing Problems
+
+<Solution>
+Manually doing a pip install <dependancy-name> for Each Missing Dependancy
+
+Issue #3
+--------
+<Description>
+Comparing Two SQLAlchemy Entities with '==' will always Return False
+
+<Solution>
+Compare Their Table Fields Instead Since Comparing The Entries will Really Compare Their RAM Locations

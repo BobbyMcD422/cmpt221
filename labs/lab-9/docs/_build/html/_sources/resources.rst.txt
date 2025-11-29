@@ -1,0 +1,41 @@
+.. _`Resources`:
+
+Resources
+=========
+This section describes classes and functions private to CMPT221 Course Labs. It is intended to document how the application works
+
+labs.lab-1
+----------
+Initialization of Repository through GitHub and VSCode
+
+labs.lab-2
+----------
+Virtual Environment (venv) Setup and Requirements Installation
+
+labs.lab-3
+----------
+Postgres and SQLAlchemy Setup to Initialize Database
+
+labs.lab-4
+----------
+Additional ORM and Raw SQL Queries for Database
+
+labs.lab-5
+----------
+Purposely Bad GUI created with HTML + CSS + JS
+
+labs.lab-6
+----------
+Signup And Login Form for User Page that connects to User table in the Database
+
+labs.lab-7
+----------
+Additional Data Sanitization and Error Logging 
+
+labs.lab-8
+----------
+Python Unit Tests for Flask Routing and Data Sanitization
+
+labs.lab-9
+----------
+Complete Sphinx Documentation for CMPT221 Course Labs

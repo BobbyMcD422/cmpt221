@@ -1,0 +1,3 @@
+This repository contains all coursework for CMPT 221, including weekly labs, source code, and supporting documentation.
+Each lab focuses on a different topic related to software development, testing, version control, and documentation.
+The repository is structured so that each lab has its own directory, and all documentation is built using Sphinx and published through GitHub Pages.
