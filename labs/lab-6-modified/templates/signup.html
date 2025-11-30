@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 7 Sign Up</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <h1>Sign Up</h1>
+        <div>
+        <form method="post">
+            <h3>First Name<span style="color: red;">*</span></h3>
+            <input type="text" name="FirstName" value="" pattern="^[A-Za-z]+$" required/>
+            <h3>Last Name<span style="color: red;">*</span></h3>
+            <input type="text" name="LastName" value="" required/>
+            <h3>Email<span style="color: red;">*</span></h3>
+            <input type="email" name="Email" value="" required placeholder="example@mail.com"/>
+            <h3>Phone Number<span style="color: red;">*</span></h3>
+            <input type="tel" name="PhoneNumber" pattern="[0-9]{3}-?[0-9]{3}-?[0-9]{4}" value="" required placeholder="123-465-7890"/>
+            <h3>Password<span style="color: red;">*</span></h3>
+            <input type="password" name="Password" value="" required/>
+            <input type="submit"/>
+        </form>
+        </div>
+
+        <br>
+        <a href="/">
+            <button type="button" id="home">Home</button>
+        </a>
+    </body>
+</html>
